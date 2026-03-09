@@ -8,6 +8,7 @@ class AddressBookApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }
