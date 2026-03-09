@@ -7,10 +7,11 @@ import com.apps.addressbooksystem.model.Contact;
 
 public class AddressBook {
     ArrayList<Contact> contactList = new ArrayList<>();
+    Scanner sc = new Scanner(System.in);
 
     public void addContact() {
 
-        Scanner sc = new Scanner(System.in);
+
 
         System.out.println("Enter First Name:");
         String firstName = sc.nextLine();
@@ -41,7 +42,42 @@ public class AddressBook {
         contactList.add(contact);
 
         System.out.println("Contact added successfully!");
-        sc.close();
+        
+        
+       
     }
+    public void editContact() {
+        System.out.println("Enter the First Name of the contact to edit:");
+        String name = sc.nextLine();
+
+        for (Contact contact : contactList) {
+            if (contact.getFirstName().equalsIgnoreCase(name)) {
+
+                System.out.println("Enter new Address:");
+                contact.setAddress(sc.nextLine());
+
+                System.out.println("Enter new City:");
+                contact.setCity(sc.nextLine());
+
+                System.out.println("Enter new State:");
+                contact.setState(sc.nextLine());
+
+                System.out.println("Enter new Zip:");
+                contact.setZip(sc.nextLine());
+
+                System.out.println("Enter new Phone Number:");
+                contact.setPhoneNumber(sc.nextLine());
+
+                System.out.println("Enter new Email:");
+                contact.setEmail(sc.nextLine());
+
+                System.out.println("Contact updated successfully!");
+                return;
+            }
+        }
+        System.out.println("Contact not found.");
+    }
+    
+    
 
 }
