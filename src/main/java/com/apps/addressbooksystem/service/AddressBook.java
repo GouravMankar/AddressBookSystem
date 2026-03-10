@@ -10,9 +10,6 @@ public class AddressBook {
     Scanner sc = new Scanner(System.in);
 
     public void addContact() {
-
-
-
         System.out.println("Enter First Name:");
         String firstName = sc.nextLine();
 
@@ -42,10 +39,8 @@ public class AddressBook {
         contactList.add(contact);
 
         System.out.println("Contact added successfully!");
-        
-        
-       
     }
+
     public void editContact() {
         System.out.println("Enter the First Name of the contact to edit:");
         String name = sc.nextLine();
@@ -77,17 +72,15 @@ public class AddressBook {
         }
         System.out.println("Contact not found.");
     }
-    public void deleteContact() {
 
+    public void deleteContact() {
         System.out.println("Enter the First Name of the contact to delete:");
         String name = sc.nextLine();
 
         for (int i = 0; i < contactList.size(); i++) {
 
             if (contactList.get(i).getFirstName().equalsIgnoreCase(name)) {
-
                 contactList.remove(i);
-
                 System.out.println("Contact deleted successfully!");
                 return;
             }
@@ -95,6 +88,7 @@ public class AddressBook {
 
         System.out.println("Contact not found.");
     }
+
     public void displayContacts() {
         if (contactList.isEmpty()) {
             System.out.println("No contacts available.");
@@ -104,6 +98,4 @@ public class AddressBook {
             System.out.println(contact);
         }
     }
-    
-
 }

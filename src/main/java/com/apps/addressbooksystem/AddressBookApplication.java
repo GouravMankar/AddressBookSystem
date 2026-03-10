@@ -1,63 +1,97 @@
 package com.apps.addressbooksystem;
 
+
 import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.apps.addressbooksystem.service.AddressBook;
+import com.apps.addressbooksystem.service.AddressBookManager;
 
 @SpringBootApplication
 public class AddressBookApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(AddressBookApplication.class, args);
+
 		System.out.println("Welcome to Address Book Program");
 
-		AddressBook addressBook = new AddressBook();
-		Scanner sc=new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
+		AddressBookManager manager = new AddressBookManager();
 
 		boolean running = true;
 
 		while (running) {
 
-		    System.out.println("1 Add Contact");
-		    System.out.println("2 Edit Contact");
-		    System.out.println("3 Delete Contact");
-		    System.out.println("4 Display Contacts");
-		    System.out.println("5 Exit");
+			System.out.println("1 Create Address Book");
+			System.out.println("2 Use Address Book");
+			System.out.println("3 Exit");
 
-		    System.out.print("Enter your choice: ");
-		    int choice = sc.nextInt();
-		    sc.nextLine();
+			int choice = sc.nextInt();
+			sc.nextLine();
 
-		    switch (choice) {
+			switch (choice) {
 
-		        case 1:
-		            addressBook.addContact();
-		            break;
+				case 1:
+					manager.createAddressBook();
+					break;
 
-		        case 2:
-		            addressBook.editContact();
-		            break;
+				case 2:
+					AddressBook book = manager.getAddressBook();
+					if (book == null) break;
 
-		        case 3:
-		            addressBook.deleteContact();
-		            break;
+					boolean usingBook = true;
 
-		        case 4:
-		            addressBook.displayContacts();
-		            break;
+					while (usingBook) {
 
-		        case 5:
-		            running = false;   // stop loop
-		            break;
+						System.out.println("1 Add Contact");
+						System.out.println("2 Edit Contact");
+						System.out.println("3 Delete Contact");
+						System.out.println("4 Display Contacts");
+						System.out.println("5 Exit");
 
-		        default:
-		            System.out.println("Invalid choice.");
-		    }
+						int option = sc.nextInt();
+						sc.nextLine();
+
+						switch (option) {
+
+							case 1:
+								book.addContact();
+								break;
+
+							case 2:
+								book.editContact();
+								break;
+
+							case 3:
+								book.deleteContact();
+								break;
+
+							case 4:
+								book.displayContacts();
+								break;
+
+							case 5:
+								usingBook = false;
+								break;
+
+							default:
+								System.out.println("Invalid option");
+						}
+					}
+					break;
+
+				case 3:
+					running = false;
+					break;
+
+				default:
+					System.out.println("Invalid choice");
+			}
 		}
+
 		sc.close();
 	}
-	
 }
