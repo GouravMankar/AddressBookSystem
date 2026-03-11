@@ -27,7 +27,10 @@ public class AddressBookApplication {
 
 			System.out.println("1 Create Address Book");
 			System.out.println("2 Use Address Book");
-			System.out.println("3 Exit");
+			System.out.println("3 Show Address Book");
+			System.out.println("4 Search Person by City");
+			System.out.println("5 Search Person by State");
+			System.out.println("6 Exit");
 
 			int choice = sc.nextInt();
 			sc.nextLine();
@@ -40,7 +43,10 @@ public class AddressBookApplication {
 
 				case 2:
 					AddressBook book = manager.getAddressBook();
-					if (book == null) break;
+
+					if (book == null) {
+						break;
+					}
 
 					boolean usingBook = true;
 
@@ -84,6 +90,18 @@ public class AddressBookApplication {
 					break;
 
 				case 3:
+					manager.displayAddressBooks();
+					break;
+
+				case 4:
+					manager.searchByCity();
+					break;
+
+				case 5:
+					manager.searchByState();
+					break;
+
+				case 6:
 					running = false;
 					break;
 

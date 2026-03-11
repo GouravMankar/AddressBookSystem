@@ -1,5 +1,4 @@
 package com.apps.addressbooksystem.service;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -106,5 +105,9 @@ public class AddressBook {
         for (Contact contact : contactList) {
             System.out.println(contact);
         }
+    }
+
+    public ArrayList<Contact> getContacts() {
+        return contactList;
     }
 }

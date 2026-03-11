@@ -1,5 +1,4 @@
 package com.apps.addressbooksystem.service;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -32,5 +31,34 @@ public class AddressBookManager {
         }
 
         return addressBooks.get(name);
+    }
+
+    public void searchByCity() {
+        System.out.println("Enter City:");
+        String city = sc.nextLine();
+
+        addressBooks.values()
+                .stream()
+                .flatMap(book -> book.getContacts().stream())
+                .filter(contact -> contact.getCity().equalsIgnoreCase(city))
+                .forEach(System.out::println);
+    }
+
+    public void searchByState() {
+
+        System.out.println("Enter State:");
+        String state = sc.nextLine();
+
+        addressBooks.values()
+                .stream()
+                .flatMap(book -> book.getContacts().stream())
+                .filter(contact -> contact.getState().equalsIgnoreCase(state))
+                .forEach(System.out::println);
+    }
+
+    public void displayAddressBooks() {
+        for(String addressBook : addressBooks.keySet()) {
+            System.out.println(addressBook);
+        }
     }
 }
