@@ -1,7 +1,6 @@
 package com.apps.addressbooksystem;
 
 
-
 import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
@@ -32,7 +31,9 @@ public class AddressBookApplication {
 			System.out.println("3 Show Address Book");
 			System.out.println("4 Search Person by City");
 			System.out.println("5 Search Person by State");
-			System.out.println("6 Exit");
+			System.out.println("6 Contact count by city");
+			System.out.println("7 Contact count by state");
+			System.out.println("8 Exit");
 
 			int choice = sc.nextInt();
 			sc.nextLine();
@@ -72,10 +73,12 @@ public class AddressBookApplication {
 
 							case 2:
 								book.editContact();
+								manager.rebuildCityAndStateMaps();
 								break;
 
 							case 3:
-								book.deleteContact();
+								Contact removed = book.deleteContact();
+								manager.removeFromCityAndStateMap(removed);
 								break;
 
 							case 4:
@@ -105,6 +108,14 @@ public class AddressBookApplication {
 					break;
 
 				case 6:
+					manager.countByCity();
+					break;
+
+				case 7:
+					manager.countByState();
+					break;
+
+				case 8:
 					running = false;
 					break;
 
