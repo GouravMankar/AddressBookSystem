@@ -1,4 +1,5 @@
 package com.apps.addressbooksystem.service;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ public class AddressBook {
     ArrayList<Contact> contactList = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
 
-    public void addContact() {
+    public Contact addContact() {
         System.out.println("Enter First Name:");
         String firstName = sc.nextLine();
 
@@ -21,7 +22,7 @@ public class AddressBook {
 
         if (contactList.contains(newContact)) {
             System.out.println("Contact already exists with name " + firstName + " " + lastName);
-            return;
+            return null;
         }
 
         System.out.println("Enter Address:");
@@ -47,6 +48,7 @@ public class AddressBook {
         contactList.add(contact);
 
         System.out.println("Contact added successfully!");
+        return contact;
     }
 
     public void editContact() {

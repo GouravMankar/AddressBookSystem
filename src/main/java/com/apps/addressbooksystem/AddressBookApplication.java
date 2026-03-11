@@ -1,11 +1,13 @@
 package com.apps.addressbooksystem;
 
 
+
 import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.apps.addressbooksystem.model.Contact;
 import com.apps.addressbooksystem.service.AddressBook;
 import com.apps.addressbooksystem.service.AddressBookManager;
 
@@ -64,7 +66,8 @@ public class AddressBookApplication {
 						switch (option) {
 
 							case 1:
-								book.addContact();
+								Contact contact = book.addContact();
+								manager.addToCityAndStateMap(contact);
 								break;
 
 							case 2:
