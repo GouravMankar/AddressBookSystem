@@ -1,6 +1,7 @@
 package com.apps.addressbooksystem;
 
 
+
 import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
@@ -13,123 +14,143 @@ import com.apps.addressbooksystem.service.AddressBookManager;
 @SpringBootApplication
 public class AddressBookApplication {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		SpringApplication.run(AddressBookApplication.class, args);
+        SpringApplication.run(AddressBookApplication.class, args);
 
-		System.out.println("Welcome to Address Book Program");
+        System.out.println("Welcome to Address Book Program");
 
-		Scanner sc = new Scanner(System.in);
-		AddressBookManager manager = new AddressBookManager();
+        Scanner sc = new Scanner(System.in);
+        AddressBookManager manager = new AddressBookManager();
 
-		boolean running = true;
+        boolean running = true;
 
-		while (running) {
+        while (running) {
 
-			System.out.println("1 Create Address Book");
-			System.out.println("2 Use Address Book");
-			System.out.println("3 Show Address Book");
-			System.out.println("4 Search Person by City");
-			System.out.println("5 Search Person by State");
-			System.out.println("6 Contact count by city");
-			System.out.println("7 Contact count by state");
-			System.out.println("8 Exit");
+            System.out.println("1 Create Address Book");
+            System.out.println("2 Use Address Book");
+            System.out.println("3 Show Address Book");
+            System.out.println("4 Search Person by City");
+            System.out.println("5 Search Person by State");
+            System.out.println("6 Contact count by city");
+            System.out.println("7 Contact count by state");
+            System.out.println("8 Exit");
 
-			int choice = sc.nextInt();
-			sc.nextLine();
+            int choice = sc.nextInt();
+            sc.nextLine();
 
-			switch (choice) {
+            switch (choice) {
 
-				case 1:
-					manager.createAddressBook();
-					break;
+                case 1:
+                    manager.createAddressBook();
+                    break;
 
-				case 2:
-					AddressBook book = manager.getAddressBook();
+                case 2:
 
-					if (book == null) {
-						break;
-					}
+                    AddressBook book = manager.getAddressBook();
 
-					boolean usingBook = true;
+                    if (book == null) {
+                        break;
+                    }
 
-					while (usingBook) {
+                    boolean usingBook = true;
 
-						System.out.println("1 Add Contact");
-						System.out.println("2 Edit Contact");
-						System.out.println("3 Delete Contact");
-						System.out.println("4 Display Contacts");
-						System.out.println("5 Sort Contacts By Name");
-						System.out.println("6 Exit");
+                    while (usingBook) {
 
-						int option = sc.nextInt();
-						sc.nextLine();
+                        System.out.println("1 Add Contact");
+                        System.out.println("2 Edit Contact");
+                        System.out.println("3 Delete Contact");
+                        System.out.println("4 Display Contacts");
+                        System.out.println("5 Sort Contacts By Name");
+                        System.out.println("6 Sort By City");
+                        System.out.println("7 Sort By State");
+                        System.out.println("8 Sort By Zip");
+                        System.out.println("9 Exit");
 
-						switch (option) {
+                        int option = sc.nextInt();
+                        sc.nextLine();
 
-							case 1:
-								Contact contact = book.addContact();
-								manager.addToCityAndStateMap(contact);
-								break;
+                        switch (option) {
 
-							case 2:
-								book.editContact();
-								manager.rebuildCityAndStateMaps();
-								break;
+                            case 1:
+                                Contact contact = book.addContact();
+                                manager.addToCityAndStateMap(contact);
+                                break;
 
-							case 3:
-								Contact removed = book.deleteContact();
-								manager.removeFromCityAndStateMap(removed);
-								break;
+                            case 2:
+                                book.editContact();
+                                manager.rebuildCityAndStateMaps();
+                                break;
 
-							case 4:
-								book.displayContacts();
-								break;
+                            case 3:
+                                Contact removed = book.deleteContact();
+                                manager.removeFromCityAndStateMap(removed);
+                                break;
 
-							case 5:
-								book.sortContactsByName();
-								book.deleteContact();
-								break;
+                            case 4:
+                                book.displayContacts();
+                                break;
 
-							case 6:
-								usingBook = false;
-								break;
+                            case 5:
+                                book.sortContactsByName();
+                                book.displayContacts();
+                                break;
 
-							default:
-								System.out.println("Invalid option");
-						}
-					}
-					break;
+                            case 6:
+                                book.sortByCity();
+                                book.displayContacts();
+                                break;
 
-				case 3:
-					manager.displayAddressBooks();
-					break;
+                            case 7:
+                                book.sortByState();
+                                book.displayContacts();
+                                break;
 
-				case 4:
-					manager.searchByCity();
-					break;
+                            case 8:
+                                book.sortByZip();
+                                book.displayContacts();
+                                break;
 
-				case 5:
-					manager.searchByState();
-					break;
+                            case 9:
+                                usingBook = false;
+                                break;
 
-				case 6:
-					manager.countByCity();
-					break;
+                            default:
+                                System.out.println("Invalid option");
+                        }
+                    }
 
-				case 7:
-					manager.countByState();
-					break;
+                    break;
 
-				case 8:
-					running = false;
-					break;
+                case 3:
+                    manager.displayAddressBooks();
+                    break;
 
-				default:
-					System.out.println("Invalid choice");
-			}
-		}
+                case 4:
+                    manager.searchByCity();
+                    break;
 
-		sc.close();
-	}
+                case 5:
+                    manager.searchByState();
+                    break;
+
+                case 6:
+                    manager.countByCity();
+                    break;
+
+                case 7:
+                    manager.countByState();
+                    break;
+
+                case 8:
+                    running = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid choice");
+            }
+        }
+
+        sc.close();
+    }
 }
