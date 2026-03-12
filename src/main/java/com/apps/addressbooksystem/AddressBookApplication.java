@@ -1,7 +1,6 @@
 package com.apps.addressbooksystem;
 
 
-
 import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
@@ -65,7 +64,9 @@ public class AddressBookApplication {
                         System.out.println("6 Sort By City");
                         System.out.println("7 Sort By State");
                         System.out.println("8 Sort By Zip");
-                        System.out.println("9 Exit");
+                        System.out.println("9 Write Contacts To File");
+                        System.out.println("10 Read Contacts From File");
+                        System.out.println("11 Exit");
 
                         int option = sc.nextInt();
                         sc.nextLine();
@@ -112,6 +113,14 @@ public class AddressBookApplication {
                                 break;
 
                             case 9:
+                                book.writeToFile();
+                                break;
+
+                            case 10:
+                                book.readFromFile();
+                                break;
+
+                            case 11:
                                 usingBook = false;
                                 break;
 
