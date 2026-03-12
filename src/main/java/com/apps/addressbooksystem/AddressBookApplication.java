@@ -67,7 +67,9 @@ public class AddressBookApplication {
                         System.out.println("10 Read Contacts From File");
                         System.out.println("11 Write Contacts To CSV");
                         System.out.println("12 Read Contacts From CSV");
-                        System.out.println("13 Exit");
+                        System.out.println("13 Write Contacts To JSON");
+                        System.out.println("14 Read Contacts From JSON");
+                        System.out.println("15 Exit");
 
                         int option = sc.nextInt();
                         sc.nextLine();
@@ -130,6 +132,14 @@ public class AddressBookApplication {
                                 break;
 
                             case 13:
+                                book.writeToJSON();
+                                break;
+
+                            case 14:
+                                book.readFromJSON();
+                                break;
+
+                            case 15:
                                 usingBook = false;
                                 break;
 
@@ -172,3 +182,4 @@ public class AddressBookApplication {
         sc.close();
     }
 }
+
