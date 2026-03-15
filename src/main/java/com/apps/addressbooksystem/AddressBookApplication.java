@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.apps.addressbooksystem.model.Contact;
+import com.apps.addressbooksystem.repository.AddressBookRepository;
 import com.apps.addressbooksystem.service.AddressBook;
 import com.apps.addressbooksystem.service.AddressBookManager;
 
@@ -20,6 +21,7 @@ public class AddressBookApplication {
 
         Scanner sc = new Scanner(System.in);
         AddressBookManager manager = new AddressBookManager();
+        AddressBookRepository addressBookRepository = new AddressBookRepository();
 
         boolean running = true;
 
@@ -69,7 +71,9 @@ public class AddressBookApplication {
                         System.out.println("12 Read Contacts From CSV");
                         System.out.println("13 Write Contacts To JSON");
                         System.out.println("14 Read Contacts From JSON");
-                        System.out.println("15 Exit");
+                        System.out.println("15 Add Contact To Database");
+                        System.out.println("16 Retrieve from Database");
+                        System.out.println("17 Exit");
 
                         int option = sc.nextInt();
                         sc.nextLine();
@@ -140,6 +144,14 @@ public class AddressBookApplication {
                                 break;
 
                             case 15:
+                                addressBookRepository.addContact();
+                                break;
+
+                            case 16:
+                                addressBookRepository.retrieveContacts();
+                                break;
+
+                            case 17:
                                 usingBook = false;
                                 break;
 
@@ -182,4 +194,3 @@ public class AddressBookApplication {
         sc.close();
     }
 }
-
