@@ -73,7 +73,8 @@ public class AddressBookApplication {
                         System.out.println("14 Read Contacts From JSON");
                         System.out.println("15 Add Contact To Database");
                         System.out.println("16 Retrieve from Database");
-                        System.out.println("17 Exit");
+                        System.out.println("17 Update contact");
+                        System.out.println("18 Exit");
 
                         int option = sc.nextInt();
                         sc.nextLine();
@@ -152,6 +153,35 @@ public class AddressBookApplication {
                                 break;
 
                             case 17:
+
+                                System.out.print("Enter first name of contact to update : ");
+                                String firstName = sc.nextLine();
+
+                                System.out.println("Enter new Last Name:");
+                                String lastName = sc.nextLine();
+
+                                System.out.println("Enter new Address:");
+                                String address = sc.nextLine();
+
+                                System.out.println("Enter new City:");
+                                String city = sc.nextLine();
+
+                                System.out.println("Enter new State:");
+                                String state = sc.nextLine();
+
+                                System.out.println("Enter new Zip:");
+                                String zip = sc.nextLine();
+
+                                System.out.println("Enter new Phone Number:");
+                                String phone = sc.nextLine();
+
+                                System.out.println("Enter new Email:");
+                                String email = sc.nextLine();
+
+                                addressBookRepository.updateContactByFirstName(firstName, lastName, address, city, state, zip, phone, email);
+                                break;
+
+                            case 18:
                                 usingBook = false;
                                 break;
 
